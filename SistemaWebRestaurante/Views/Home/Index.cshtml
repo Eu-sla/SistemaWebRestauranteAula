@@ -3,6 +3,26 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h2>Login do Restaurante</h2>
+
+    <form method="post" asp-controller="Usuario" asp-action="Index">
+
+        <div style="margin-top: 10px">
+            <label>Email</label>
+            <input type="text" name="email" />
+        </div>
+
+        <div style="margin-top: 10px">
+            <label>Senha</label>
+            <input type="password" name="senha" />
+        </div>
+
+        <button style="margin-top: 10px" type="submit">Entrar</button>
+
+    </form>
+
+    @if (ViewBag.Erro != null)
+    {
+        <p style="color:red">@ViewBag.Erro</p>
+    }
 </div>
