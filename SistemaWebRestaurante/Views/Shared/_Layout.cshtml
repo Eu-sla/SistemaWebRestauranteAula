@@ -26,6 +26,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Produto" asp-action="View1">Editar</a>
                         </li>
                     </ul>
+                    @{
+                        var usuario = Context.Session.GetString("usuario");
+                    }
+
+                    @if (usuario != null)
+                    {
+                        <span>Olá, @usuario</span>
+                        <a href="/Usuario/Logout">Sair</a>
+                    }
                 </div>
             </div>
         </nav>

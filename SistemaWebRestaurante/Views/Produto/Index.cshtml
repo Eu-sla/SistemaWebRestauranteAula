@@ -1,0 +1,50 @@
+@model IEnumerable<SistemaWebRestaurante.Models.Produto>
+@{
+    ViewData["Title"] = "Produtos";
+    var ehAdmin = ViewBag.EhAdmin as bool? ?? false;
+}
+
+<h2>Produtos</h2>
+
+@if (ehAdmin)
+{
+    <a class="btn btn-primary" asp-action="Create">Adicionar Produto</a>
+}
+
+<table class="table table-striped" style="margin-top:10px">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            @if (ehAdmin)
+            {
+                <th>Ações</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Nome</td>
+                <td>@item.Quantidade</td>
+                <td>@item.Descricao</td>
+                <td>@string.Format("{0:C}", item.Valor)</td>
+                @if (ehAdmin)
+                {
+                    <td>
+                        <form asp-action="Delete" method="post" style="display:inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Excluir este produto?');">Excluir</button>
+                        </form>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
