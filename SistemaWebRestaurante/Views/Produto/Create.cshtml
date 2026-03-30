@@ -1,0 +1,28 @@
+@model SistemaWebRestaurante.Models.Produto
+@{
+    ViewData["Title"] = "Adicionar Produto";
+}
+
+<h2>Adicionar Produto</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <input class="form-control" name="Nome" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Quantidade</label>
+        <input class="form-control" type="number" name="Quantidade" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descrição</label>
+        <input class="form-control" name="Descricao" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Valor</label>
+        <input class="form-control" type="number" step="0.01" name="Valor" />
+    </div>
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
