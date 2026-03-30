@@ -123,6 +123,17 @@ namespace SistemaWebRestaurante.Controllers
             return View();
         }
 
+        public IActionResult Details(int id)
+        {
+            var produto = _produtos.FirstOrDefault(p => p.Id == id);
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            return View(produto);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Produto produto)
